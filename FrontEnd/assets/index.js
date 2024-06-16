@@ -5,6 +5,7 @@
 const gallery = document.querySelector('.gallery');
 const filter = document.querySelector('.filtre');
 
+
 /* Fonction qui appel et retourne le tableau works en json */
 async function getWorks(){
     const reponse = await fetch("http://localhost:5678/api/works")
@@ -23,9 +24,9 @@ async function worksView(){      /* creation d'une function qui affiche mes work
     const galleryTitle = document.createElement('figurecaption'); /* variable qui cree un element figurecaption */
     galleryTitle.textContent = element.title;                 /* permet d'aller chercher le titre depuis l'objet */
     const galleryCategoryId = document.createElement('figure'); /* variable qui cree un une balise figure */
-    galleryCategoryId.appendChild(galleryImage)  /* permet de mettre l'element image en enfant de figure */
-    galleryCategoryId.appendChild(galleryTitle)  /* permet de mettre l'element figurecaption en enfant de figure */
-    gallery.appendChild(galleryCategoryId)       /* permet de mettre l'element figure en enfant de la section gallery */
+    galleryCategoryId.appendChild(galleryImage);  /* permet de mettre l'element image en enfant de figure */
+    galleryCategoryId.appendChild(galleryTitle);  /* permet de mettre l'element figurecaption en enfant de figure */
+    gallery.appendChild(galleryCategoryId);       /* permet de mettre l'element figure en enfant de la section gallery */
 });
 }
 worksView();
@@ -50,3 +51,20 @@ async function displayButtonCategorie() { /* creation d'une function qui affiche
     });
 }
 displayButtonCategorie();
+
+/** Ajout du click qui permet de filtrer nos catégories **/
+
+async function btnClick() {
+    const filter = await getWorks();
+    console.log(filter);
+    const buttons = document.querySelectorAll(".filtre button");
+    buttons.forEach((button) => {
+        button.addEventListener("click",(e)=>{
+            console.log(coucou);
+        btnId = e.target.id;
+        gallery.innerHTML = "";
+        });
+    });
+};
+
+btnClick();
