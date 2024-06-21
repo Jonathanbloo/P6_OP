@@ -2,14 +2,16 @@
 
 /** Les Variables **/
 
-const gallery = document.querySelector('.gallery');
-const filter = document.querySelector('.filtre');
+
+
 
 
 /* Fonction qui appel et retourne le tableau works en json */
 async function getWorks(){
     const reponse = await fetch("http://localhost:5678/api/works")
-    return await reponse.json();
+    const projets = await reponse.json();
+
+worksView(projets);
 }
 getWorks();
 
@@ -27,7 +29,8 @@ async function worksView(){      /* creation d'une function qui affiche mes work
     galleryCategoryId.appendChild(galleryImage);  /* permet de mettre l'element image en enfant de figure */
     galleryCategoryId.appendChild(galleryTitle);  /* permet de mettre l'element figurecaption en enfant de figure */
     gallery.appendChild(galleryCategoryId);       /* permet de mettre l'element figure en enfant de la section gallery */
-});
+;
+})
 }
 worksView();
 
@@ -36,34 +39,48 @@ worksView();
 
 async function getCategorys() { /* creation d'une function qui affiche les categories */
     const reponse = await fetch("http://localhost:5678/api/categories");
-    return await reponse.json();
-}
+    const categorie = await reponse.json();
+    const gallery = document.querySelector('.gallery');
+    const Filtres = document.querySelector('.filtres');
+    const btnTous = document.createElement('button');
+    btnTous.innerText = "Tous";
+    Filtres.appendChild(btnTous);
+
+    btnTous.addEventListener("click", function(){
+        gallery.innerHTML="";
+        getWorks();
+    })
+    for (let filtres of categorie) {
+        const button = document.createElement('button');
+        button.innerText = filtres.name;
+        Filtres.appendChild(button);
+        
+        button.addEventListener("click", async function(){
+            const reponse = await fetch("http://localhost:5678/api/works");
+            const btnFiltres = await reponse.json();
+
+            const filtre = btnFiltres.filter(function (btnFiltres){
+                return btnFiltres.categoryId === filtres.id;
+            })
+            const gallery = document.querySelector('.gallery');
+            gallery.innerHTML="";
+            worksView(filtre);
+        })
+    
+    }
+
+}   
+getCategorys();
+
+
+
+
 /** Affichage de mes btn par catégories **/
 
-async function displayButtonCategorie() { /* creation d'une function qui affiche les boutons */
-    const categories = await getCategorys(); //rappel de la fonction getCategorys
-    categories.forEach(categorie => {        // recherche dans categories les elements 
-        const btn = document.createElement("button");  // variable qui créé element <button>
-        btn.textContent = categorie.name;     // btn contient du texte qui viens de mon tableau sous le nom "name" 
-        btn.id = categorie.id;          // de meme que pour name mais pour id
-        filter.appendChild(btn);        // mon btn est enfant de ma section filtre (permet de bien le placer)
-        btn.classList.add('filtre__style'); // ajout de la class css filtre__style à mon btn
-    });
-}
-displayButtonCategorie();
+
+
 
 /** Ajout du click qui permet de filtrer nos catégories **/
 
-async function btnClick() {
-    const filter = await getWorks();
-    console.log(filter);
-    const buttons = document.querySelectorAll(".filtre button");
-    buttons.forEach((button) => {
-        button.addEventListener("click",(e)=>{
-            console.log(coucou);
-        btnId = e.target.id;
-        gallery.innerHTML = "";
-        });
-    });
-};
-btnClick();
+
+
