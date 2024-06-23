@@ -3,9 +3,6 @@
 /** Les Variables **/
 
 
-
-
-
 /* Fonction qui appel et retourne le tableau works en json */
 async function getWorks(){
     const reponse = await fetch("http://localhost:5678/api/works")
@@ -41,11 +38,11 @@ async function getCategorys() { /* creation d'une function qui affiche les categ
     const reponse = await fetch("http://localhost:5678/api/categories");
     const categorie = await reponse.json();
     const gallery = document.querySelector('.gallery');
-    const Filtres = document.querySelector('.filtres');
+    const Filtres = document.querySelector('.filtre');
     const btnTous = document.createElement('button');
     btnTous.innerText = "Tous";
     Filtres.appendChild(btnTous);
-
+    btnTous.classList.add(".filtre__style")
     btnTous.addEventListener("click", function(){
         gallery.innerHTML="";
         getWorks();
@@ -54,11 +51,11 @@ async function getCategorys() { /* creation d'une function qui affiche les categ
         const button = document.createElement('button');
         button.innerText = filtres.name;
         Filtres.appendChild(button);
-        
+        button.classList.add(".filtre__style")
         button.addEventListener("click", async function(){
             const reponse = await fetch("http://localhost:5678/api/works");
             const btnFiltres = await reponse.json();
-
+            
             const filtre = btnFiltres.filter(function (btnFiltres){
                 return btnFiltres.categoryId === filtres.id;
             })
@@ -66,7 +63,6 @@ async function getCategorys() { /* creation d'une function qui affiche les categ
             gallery.innerHTML="";
             worksView(filtre);
         })
-    
     }
 
 }   
