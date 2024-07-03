@@ -28,11 +28,15 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
+html {
+	background-color: #FFFEF8;
+}
 body {
 	line-height: 1;
 }
 ol, ul {
 	list-style: none;
+	text-decoration: none;
 }
 blockquote, q {
 	quotes: none;
@@ -55,8 +59,10 @@ body {
 }
 header {
 	display: flex;
-	justify-content: space-between;
-	margin: 50px 0
+    justify-content: space-between;
+    margin: 100px 0;
+    position: relative;
+    top: 0px;
 }
 section {
 	margin: 50px 0
@@ -88,15 +94,26 @@ nav ul {
 	display: flex;
 	align-items: center;
 	list-style-type: none;
-
+	text-decoration: none;
+	gap: 30px;
 }
 nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
+	text-decoration: none;
+	list-style: none;
+}
+a {
+	list-style: none;
+	text-decoration: none;
+	color: black;
 }
 
 li:hover {
 	color: #B1663C;
+}
+footer {
+	background-color: white;
 }
 #introduction {
 	display: flex;
@@ -205,4 +222,84 @@ footer nav ul {
 	justify-content: flex-end;
 	margin: 2em
 }
+/************************** Login Html ****************************/
+	
+	#section__login{
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 171px 171px 300px 171px;
+}
+.login {
+	font-weight: 900;
+    font-size: 18px;
+}
+#section__login form{
+	display: flex;
+    flex-direction: column;
+}
+#section__login input {
+	height: 50px;
+	width: 400px;
 
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+#section__login label{
+	margin-bottom: 10px;
+	margin-top: 35px;
+	color: #3D3D3D;
+	font-weight: 600;
+}
+#section__login button{
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #1D6154;
+	margin : 2em auto ;
+	height: 40px;
+	width: 180px;
+	text-align: center;
+	border-radius: 60px ;
+}
+#section__login a {
+	display: flex;
+	justify-content: center;
+	color: #3D3D3D;
+	font-weight: 300;
+}
+
+
+/********************** Modale Section **********************/
+.modal-container{
+	display: none;
+}
+.modal-visible{
+	display: block;
+	background-color: black;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+	gap: 8px;
+}
+.modal-container span {
+	color: white;
+}
+.modal-container i {
+	color: white;
+}
+.logout{
+	padding: 0 10px;
+	font-size: 1.2em;
+	text-decoration: none;
+	list-style: none;
+}
+.logout:hover{
+	color: #B1663C;
+}

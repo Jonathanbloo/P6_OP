@@ -66,6 +66,75 @@ displayFilters();
 
 
 
+/** Utilisateur Connecté pour modal **/
+const loged = window.sessionStorage.getItem('loged');
+const modeEdition = document.querySelector(".modal-container");
+const login = document.querySelector(".login");
+const logout = document.querySelector(".logout");
+
+if (loged === 'true') {
+    // Affichage la div en mode édition
+    if (modeEdition) {
+        modeEdition.classList.add('modal-visible');
+    } else {
+        console.error("Element .modal-container non trouvé !");
+    }
+    // Affichage le bouton de déconnexion
+    if (logout) {
+        logout.textContent = "Logout";
+        logout.style.display = "block";
+    } else {
+        console.error("Element .logout non trouvé !");
+    }
+    // Masque le bouton de connexion
+    if (login) {
+        login.style.display = "none";
+    } else {
+        console.error("Element .login non trouvé !");
+    }
+} else {
+    // Masque la div en mode édition
+    if (modeEdition) {
+        modeEdition.classList.remove('modal-visible');
+    } else {
+        console.error("Element .modal-container non trouvé !");
+    }
+    // Affiche le bouton de connexion
+    if (login) {
+        login.style.display = 'block';
+    } else {
+        console.error("Element .login non trouvé !");
+    }
+    // Masque le bouton de déconnexion
+    if (logout) {
+        logout.style.display = 'none';
+    } else {
+        console.error("Element .logout non trouvé !");
+    }
+}
+
+// Ajoutez des gestionnaires d'événements pour login et logout
+if (login) {
+    login.addEventListener('click', () => {
+        // Simulez une connexion en tant qu'admin (pour les tests)
+        window.sessionStorage.setItem('loged', 'true');
+        // Rechargez la page pour appliquer les changements
+        location.reload();
+    });
+} else {
+    console.error("Element .login non trouvé pour ajouter l'événement !");
+}
+
+if (logout) {
+    logout.addEventListener('click', () => {
+        window.sessionStorage.removeItem('loged');
+        // Rechargez la page pour appliquer les changements
+        location.reload();
+    });
+} else {
+    console.error("Element .logout non trouvé pour ajouter l'événement !");
+}
+
 
 
 
