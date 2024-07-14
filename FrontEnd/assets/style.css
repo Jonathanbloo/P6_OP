@@ -138,6 +138,9 @@ footer {
 #introduction p {
 	margin-bottom: 0.5em;
 }
+#portfolio{
+	margin-top: 115px;
+}
 #portfolio h2 {
 	text-align: center;
 	margin-bottom: 1em;
@@ -302,4 +305,68 @@ footer nav ul {
 }
 .logout:hover{
 	color: #B1663C;
+}
+.modal-photo{
+    margin-bottom: 2em;
+	margin-left: 30px;
+	display: none;
+}
+
+/**************************** Modal modifier ******************************/
+
+
+.mesprojets-titre{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.container-wrapper{
+	display: flex;
+	justify-content: center;
+}
+.modal-wrapper{
+	display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    width: 53%;
+    height: 785px;
+    background-color: white;
+}
+.fa-x{
+	position: absolute;
+    top: 50px;
+    right: 50px;
+}
+.modal-wrapper h3{
+	font-size: 23px;
+	display: flex;
+	justify-content: center;
+	margin-top: 90px;
+}
+.modal-wrapper-button{
+	display: flex;
+	flex-direction: column;
+
+}
+.modal-wrapper button{
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #1D6154;
+	margin : 2em auto ;
+	width: 250px;
+	height: 35px;
+	text-align: center;
+	border-radius: 60px ;
+}
+.modal-wrapper hr{
+	width: 400px;
+}
+
+.wrapper-images{
+	margin: auto;
+    width: 100%;
+    height: 100%;
 }

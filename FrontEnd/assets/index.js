@@ -30,7 +30,8 @@ async function worksView(filterId = 0){      /* creation d'une function qui affi
 
     worksToDisplay.forEach(element => {         /* foreach qui permet de rechercher mes elements dans mon tableau */
     const galleryImage = document.createElement('img');   /* variable qui cree un element image */
-    galleryImage.src = element.imageUrl;                    /* permet d'aller chercher l'image depuis l'objet */
+    galleryImage.src = element.imageUrl; /* permet d'aller chercher l'image depuis l'objet */
+    galleryImage.classList.add('gallery');
     const galleryTitle = document.createElement('figurecaption'); /* variable qui cree un element figurecaption */
     galleryTitle.textContent = element.title;                 /* permet d'aller chercher le titre depuis l'objet */
     const galleryFigure = document.createElement('figure'); /* variable qui cree un une balise figure */
@@ -71,6 +72,7 @@ const loged = window.sessionStorage.getItem('loged');
 const modeEdition = document.querySelector(".modal-container");
 const login = document.querySelector(".login");
 const logout = document.querySelector(".logout");
+const modalPhoto = document.querySelector(".modal-photo");
 
 if (loged === 'true') {
     // Affichage la div en mode édition
@@ -92,6 +94,12 @@ if (loged === 'true') {
     } else {
         console.error("Element .login non trouvé !");
     }
+    // Affiche le bouton modifier
+    if (modalPhoto) {
+        modalPhoto.style.display = 'block';
+    } else {
+        console.error("Element .modal-photo non trouvé !")
+    }
 } else {
     // Masque la div en mode édition
     if (modeEdition) {
@@ -111,6 +119,7 @@ if (loged === 'true') {
     } else {
         console.error("Element .logout non trouvé !");
     }
+
 }
 
 // Ajoutez des gestionnaires d'événements pour login et logout
@@ -136,5 +145,17 @@ if (logout) {
 }
 
 
+/*************************** Ajout du modal Galerie photo **************************/
+
+const modifier = document.querySelector('.modifier')
+const containerWrapper = document.querySelector('.modal-wrapper');
+const modifierClose = document.querySelector(' .modal-wrapper .fa-x');
 
 
+modifier.addEventListener('click', () => {
+    console.log("modifier");
+    containerWrapper.style.display = 'flex';
+});
+modifierClose.addEventListener('click', () => {
+    containerWrapper.style.display = 'none';
+});
