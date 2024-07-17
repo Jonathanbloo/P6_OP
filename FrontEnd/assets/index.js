@@ -17,6 +17,7 @@ async function getCategorys(){
     return await response.json();
 }
 
+
 /**  affichage du works **/
 
 async function worksView(filterId = 0){      /* creation d'une function qui affiche mes works */
@@ -148,9 +149,9 @@ if (logout) {
 /*************************** Ajout du modal Galerie photo **************************/
 
 const modifier = document.querySelector('.modifier')
-const containerWrapper = document.querySelector('.modal-wrapper');
-const modifierClose = document.querySelector(' .modal-wrapper .fa-x');
-
+const containerWrapper = document.querySelector('.container-wrapper');
+const modifierClose = document.querySelector(' .container-wrapper .fa-x');
+const modalimages = document.querySelector('.wrapper-images');
 
 modifier.addEventListener('click', () => {
     console.log("modifier");
@@ -159,3 +160,61 @@ modifier.addEventListener('click', () => {
 modifierClose.addEventListener('click', () => {
     containerWrapper.style.display = 'none';
 });
+containerWrapper.addEventListener('click' , (e) =>{
+    console.log(e.target.className);
+    if (e.target.className == 'container-wrapper') {
+        containerWrapper.style.display = "none";
+    }
+})
+
+// Affichage des objets à suppr dans la modal //
+
+async function displayGalleryModal (){     // fonction Affichage de la gallery dans la modal
+    modalimages.innerHTML="";              // Permet de reinitaliser la gallery
+    const gallery = await getWorks();      // Constante qui appel les travaux
+    gallery.forEach(objet => {             // Permet la recherche dans gallery pour creer les elements
+        const figure = document.createElement("figure")
+        const img = document.createElement('img')
+        const span = document.createElement('span')
+        const trash = document.createElement('i')  // Trash qui est l'icone poubelle
+        trash.classList.add("fa-solid","fa-trash-can") // Ajout de la class fa solid et trash qui sont des class fontawesome
+        trash.id = objet.id  // Ajout d'un id à notre poubelle ( a verif )
+        img.src = objet.imageUrl 
+        img.classList.add("modal-img")
+        span.appendChild(trash)
+        figure.appendChild(span)
+        figure.appendChild(img)
+        modalimages.appendChild(figure)
+    });
+    deleteImages();
+}
+displayGalleryModal()
+
+/*************** fonction qui permet de supprimer les images **************/
+
+function deleteImagesID () {
+    const authToken = localStorage.getItem('token'); // Récupérer le token stocké
+    if (!authToken) {
+        console.error('Token non disponible');
+        return ;
+    }
+    return authToken;
+}
+
+function deleteImages() {
+    let authToken = deleteImagesID()
+    console.log(authToken);
+    const trashAll = document.querySelectorAll('.fa-trash-can');
+    trashAll.forEach(trash => {
+        trash.addEventListener('click', () => {
+            const id = trash.id;
+            fetch(`http://localhost:5678/api/works/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    "Authorization": `Bearer ${authToken}`,
+                    "Content-Type": "application/json",
+                }
+        })
+    })
+})
+}

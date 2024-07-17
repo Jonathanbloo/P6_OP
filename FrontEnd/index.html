@@ -28,6 +28,37 @@
 		</ul>
 	</nav>
 </header>
+<div class="container-wrapper">
+		<div class="modal-content">
+			<h3>Galerie Photo</h3>
+			<span class="x-mark"><i class="fa-solid fa-x"></i></span>
+			<div class="wrapper-images"></div>
+			<div class="modal-wrapper-button">
+				<hr></hr>
+				<button>Ajouter une photo</button>
+			</div>
+		</div>
+		<div class="modal-post">
+			<span class="modalpost-arrow"><i class="fa-solid fa-arrow-left"></i></span>
+			<span class="modalpost-xmark"><i class="fa-solid fa-x"></i></span>
+			<h3>Ajout photo</h3>
+			<form>
+				<div class="container-file">
+					<i class="fa-regular fa-image"></i>
+					<label id="ajouter-photo" for="file">+ Ajouter photo</label>
+					<input type="file" id="file" name="image">
+					<img src="#" alt="Aperçu de l'image">
+					<p>jpg.png : 4mo max</p>
+				</div>
+				<label id="label-titre" for="title">Titre</label>
+				<input type="text" id="title" name="title">
+				<label id="label-category" for="category">Catégorie</label>
+				<select id="category" name="category"></select>
+				<hr></hr>
+				<button class="modal-post-button">Valider</button>
+			</form>
+		</div>
+</div>
 <main>
 	<section id="introduction">
 		<figure>
@@ -41,17 +72,7 @@
 		</article>
 	</section>
 	<section id="portfolio">
-		<div class="container-wrapper">
-			<div class="modal-wrapper">
-				<h3>Galerie Photo</h3>
-				<span><i class="fa-solid fa-x"></i></span>
-				<div class="wrapper-images"></div>
-				<div class="modal-wrapper-button">
-					<hr></hr>
-					<button>Ajouter une photo</button>
-				</div>
-			</div>
-		</div>
+	
 		<div class="mesprojets-titre">
 			<h2>Mes Projets</h2>
 			<div class="modal-photo">
@@ -90,4 +111,3 @@
 </body>
 </html>
 <script src="./assets/index.js"></script>
-<!-- <script async src="./assets/login.js"></script> -->

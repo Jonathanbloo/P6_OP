@@ -233,10 +233,6 @@ footer nav ul {
     align-items: center;
     padding: 171px 171px 300px 171px;
 }
-.login {
-	font-weight: 900;
-    font-size: 18px;
-}
 #section__login form{
 	display: flex;
     flex-direction: column;
@@ -310,6 +306,7 @@ footer nav ul {
     margin-bottom: 2em;
 	margin-left: 30px;
 	display: none;
+	cursor: pointer;
 }
 
 /**************************** Modal modifier ******************************/
@@ -321,36 +318,52 @@ footer nav ul {
 	align-items: center;
 }
 .container-wrapper{
-	display: flex;
-	justify-content: center;
-}
-.modal-wrapper{
-	display: none;
-    flex-direction: column;
-    justify-content: space-between;
+	position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
     align-items: center;
-    position: absolute;
-    width: 53%;
-    height: 785px;
-    background-color: white;
+	transition: opacity 0.5s ease, transform 0.5s ease;
 }
-.fa-x{
+
+.modal-content{
+	background-color: #fefefe;
+	margin: 15% auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 40%;
+	max-width: 1100px;
+	text-align: center;
+	border-radius: 15px;
 	position: absolute;
-    top: 50px;
-    right: 50px;
+	
+	
 }
-.modal-wrapper h3{
-	font-size: 23px;
-	display: flex;
-	justify-content: center;
-	margin-top: 90px;
+.x-mark{
+	position: absolute;
+    top: 30px;
+    right: 50px;
+	cursor: pointer;
+}
+.modal-content h3{
+	font-size: 25px;
+    display: flex;
+    justify-content: center;
+    margin-top: 45px;
+	margin-bottom: 45px;
 }
 .modal-wrapper-button{
 	display: flex;
 	flex-direction: column;
 
 }
-.modal-wrapper button{
+.modal-content button{
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
@@ -363,10 +376,141 @@ footer nav ul {
 }
 .modal-wrapper hr{
 	width: 400px;
+	color: black;
 }
 
 .wrapper-images{
-	margin: auto;
-    width: 100%;
-    height: 100%;
+	margin: 15px auto;
+	display: flex;
+	margin: 50px;
+	flex-wrap: wrap;
+	gap: 9px;
+	padding-left: 18px;
+	padding-right: 18px;
+}
+.modal-img{
+	width: 80px;
+}
+.wrapper-images figure{
+	position: relative;
+}
+.wrapper-images span {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 8px;
+	right: 8px;
+	color: white;
+	background-color: black;
+	width: 17px;
+	height: 17px;
+	font-size: 11px;
+	cursor: pointer;
+}
+/*********************** Modal Post *************************/
+
+.modal-post{
+    background-color: #fefefe;
+    margin: 15% auto;
+    border: 1px solid #888;
+    max-width: 1100px;
+    text-align: center;
+    border-radius: 15px;
+    position: relative;
+    padding: 0px 104px 0px;
+	height: 658px;
+}
+.modalpost-xmark{
+	position: absolute;
+    top: 30px;
+    right: 50px;
+	cursor: pointer;
+}
+.modalpost-arrow{
+	position: absolute;
+    top: 23px;
+    left: 50px;
+	cursor: pointer;
+	font-size: 25px;
+}
+.modal-post h3{
+	font-size: 25px;
+    display: flex;
+    justify-content: center;
+    margin-top: 45px;
+	margin-bottom: 45px;
+}
+.modal-post form{
+	display: flex;
+	flex-direction: column;
+}
+
+.container-file{
+	background-color: #E8F1F6;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	border-radius: 5px;
+	width: 408px;
+	padding: 50px auto;
+}
+#ajouter-photo{
+	margin-top: 7px;
+}
+.container-file img{
+	display: none;
+}
+.container-file p{
+	font-size: 11px;
+	margin-top: 8px;
+	color: #444444;
+}
+.container-file label{
+	background-color: #CBD6DC;
+    color: #306685;
+    border-radius: 18px;
+    padding: 12px 40px 12px 40px;
+}
+#file{
+	display: none;
+}
+.fa-image{
+	font-size: 70px;
+	color: #B9C5CC;
+}
+.modal-post-button{
+	font-family: 'Syne';
+    font-weight: 700;
+    color: white;
+    background-color: #A7A7A7;
+	border: #A7A7A7;
+    margin: 65px 79px 30px 79px;
+    width: 250px;
+    height: 40px;
+    text-align: center;
+    border-radius: 60px;
+}
+#label-titre{
+	display: flex;
+	margin-top: 20px;
+}
+#label-category{
+	display: flex;
+	margin-top: 18px;
+}
+#category{
+	border: none;
+	height: 50px;
+	box-shadow: 3px 2px 12px 1px rgba(0, 0, 0, 0.09);
+	margin-top: 13px;
+}
+#title{
+	border: none;
+	height: 50px;
+	box-shadow: 3px 2px 12px 1px rgba(0, 0, 0, 0.09);
+	margin-top: 13px;
 }
