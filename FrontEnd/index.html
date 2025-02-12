@@ -20,10 +20,10 @@
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>
 		<ul>
-			<a href="http://127.0.0.1:5500/FrontEnd/index.html"><li>projets</li></a>
+			<a href="index.html"><li>projets</li></a>
 			<a href=""><li>contact</li></a>
-			<a class="login" href="http://127.0.0.1:5500/FrontEnd/login.html"><li>login</li></a>
-			<a class="logout" href="http://127.0.0.1:5500/FrontEnd/login.html"></a>
+			<a class="login" href="login.html"><li>login</li></a>
+			<a class="logout" href="login.html"></a>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>
@@ -35,7 +35,7 @@
 			<div class="wrapper-images"></div>
 			<div class="modal-wrapper-button">
 				<hr></hr>
-				<button>Ajouter une photo</button>
+				<button class="modal-content-button">Ajouter une photo</button>
 			</div>
 		</div>
 		<div class="modal-post">
@@ -73,11 +73,13 @@
 	</section>
 	<section id="portfolio">
 	
-		<div class="mesprojets-titre">
-			<h2>Mes Projets</h2>
-			<div class="modal-photo">
-				<i class="fa-regular fa-pen-to-square"></i>
-				<span class="modifier">modifier</span>
+		<div>
+			<div class="mesprojets-titre modifier-titre">
+				<h2>Mes Projets</h2>
+				<div class="modal-photo">
+					<i class="fa-regular fa-pen-to-square"></i>
+					<span class="modifier">modifier</span>
+				</div>
 			</div>
 		</div>
 		<div class="filtre">
@@ -111,3 +113,4 @@
 </body>
 </html>
 <script src="./assets/index.js"></script>
+<script src="./assets/modal.js"></script>
