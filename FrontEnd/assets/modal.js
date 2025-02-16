@@ -132,10 +132,38 @@ fileInput.addEventListener("change", function () {
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  if (!title.value.trim()) return alert("Le champ titre est requis.");
-  if (!categoryForm.value.trim())
-    return alert("Veuillez sélectionner une catégorie.");
-  if (!fileInput.files[0]) return alert("Veuillez sélectionner une catégorie.");
+  // Réinitialisation des erreurs
+  document.getElementById("title-error").textContent = "";
+  document.getElementById("category-error").textContent = "";
+  document.getElementById("file-error").textContent = "";
+
+  let isValid = true;
+
+  // Vérification du titre
+  if (!title.value.trim()) {
+    title.classList.add("error-input");
+    title.placeholder = "Veuillez entrer un titre";
+    document.getElementById("title-error").textContent = "Le titre est requis.";
+    isValid = false;
+  } else {
+    title.classList.remove("error-input");
+  }
+
+  // Vérification de la catégorie
+  if (!categoryForm.value.trim()) {
+    document.getElementById("category-error").textContent =
+      "Veuillez sélectionner une catégorie.";
+    isValid = false;
+  }
+
+  // Vérification de l'image
+  if (!fileInput.files[0]) {
+    document.getElementById("file-error").textContent =
+      "Veuillez sélectionner une image.";
+    isValid = false;
+  }
+
+  if (!isValid) return; // Stoppe l'exécution si une erreur est détectée
 
   const formData = new FormData(form);
 
@@ -153,10 +181,45 @@ form.addEventListener("submit", async (e) => {
   }
 });
 
+/*************************** Fonction pour le bouton valider **************************/
+
+document.addEventListener("DOMContentLoaded", function () {
+  const titleInput = document.getElementById("title");
+  const categoryInput = document.getElementById("category");
+  const fileInput = document.getElementById("file");
+  const validateButton = document.getElementById("validate-button");
+
+  function checkFields() {
+    if (
+      titleInput.value.trim() !== "" &&
+      categoryInput.value.trim() !== "" &&
+      fileInput.files.length > 0
+    ) {
+      validateButton.style.backgroundColor = "#1d6154";
+      validateButton.disabled = false; // Activer le bouton
+    } else {
+      validateButton.style.backgroundColor = "";
+      validateButton.disabled = true; // Désactiver le bouton
+    }
+  }
+
+  titleInput.addEventListener("input", checkFields);
+  categoryInput.addEventListener("input", checkFields);
+  fileInput.addEventListener("change", checkFields);
+});
+
 /*************************** Ajout des catégories **************************/
 
 async function categoryAdd() {
   const select = document.querySelector(".modal-post select");
+
+  const defaultOption = document.createElement("option");
+  defaultOption.value = "";
+  defaultOption.textContent = "Veuillez sélectionner une catégorie";
+  defaultOption.disabled = true;
+  defaultOption.selected = true;
+  select.appendChild(defaultOption);
+
   const categories = await getCategorys();
   categories.forEach(({ id, name }) => {
     const option = document.createElement("option");

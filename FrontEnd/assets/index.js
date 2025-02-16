@@ -74,7 +74,6 @@ async function displayFilters() {
     button.addEventListener("click", async () => {
       //événement de clic est ajouté à chaque bouton.
       await worksView(filter.id); //appelle worksView(filter.id), une fonction (non montrée ici) qui affiche les travaux correspondant à l'ID de la catégorie (filter.id)
-      console.log(filters);
     });
   });
 }
@@ -161,8 +160,8 @@ if (login) {
 if (logout) {
   logout.addEventListener("click", () => {
     window.sessionStorage.removeItem("loged");
-    // Rechargez la page pour appliquer les changements
-    location.reload();
+    // Rechargez la page vers login pour appliquer les changements
+    window.location("login");
   });
 } else {
   console.error("Element .logout non trouvé pour ajouter l'événement !");

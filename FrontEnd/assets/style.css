@@ -576,22 +576,27 @@ footer nav ul {
   font-size: 70px;
   color: #b9c5cc;
 }
-.modal-post-button {
+
+#validate-button {
   font-family: "Syne";
   font-weight: 700;
+  background-color: gray; /* Désactivé */
   color: white;
-  background-color: #a7a7a7;
   border: #a7a7a7;
+  cursor: not-allowed;
+  transition: background-color 0.3s;
   margin: 65px 79px 30px 79px;
   width: 250px;
   height: 40px;
   text-align: center;
   border-radius: 60px;
 }
-.modal-post-button:hover {
-  background-color: #1d6154;
+
+#validate-button.active {
+  background-color: green; /* Activé */
   cursor: pointer;
 }
+
 #label-titre {
   display: flex;
   margin-top: 20px;
@@ -611,4 +616,14 @@ footer nav ul {
   height: 50px;
   box-shadow: 3px 2px 12px 1px rgba(0, 0, 0, 0.09);
   margin-top: 13px;
+}
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.error-input {
+  border: 1px solid red;
+  background-color: #ffe5e5;
 }

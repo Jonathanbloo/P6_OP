@@ -47,15 +47,18 @@
 					<i class="fa-regular fa-image"></i>
 					<label id="ajouter-photo" for="file">+ Ajouter photo</label>
 					<input type="file" id="file" name="image">
+					<p id="file-error" class="error-message"></p>
 					<img src="#" alt="Aperçu de l'image">
 					<p>jpg.png : 4mo max</p>
 				</div>
 				<label id="label-titre" for="title">Titre</label>
 				<input type="text" id="title" name="title">
+				<p id="title-error" class="error-message"></p>
 				<label id="label-category" for="category">Catégorie</label>
 				<select id="category" name="category"></select>
+				<p id="category-error" class="error-message"></p>
 				<hr></hr>
-				<button class="modal-post-button">Valider</button>
+				<button type="submit" id="validate-button" disabled>Valider</button>
 			</form>
 		</div>
 </div>
