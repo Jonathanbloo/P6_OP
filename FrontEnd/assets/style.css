@@ -217,9 +217,11 @@ footer {
 
 #introduction p {
   margin-bottom: 0.5em;
+  width: 380px;
 }
 #portfolio {
   margin-top: 115px;
+  margin-left: 70px;
 }
 #portfolio h2 {
   text-align: center;
@@ -255,7 +257,7 @@ footer {
 
 .gallery img {
   width: 100%;
-  height: 100%;
+  height: 513px;
   object-fit: cover;
   margin-bottom: 10px;
 }
@@ -404,7 +406,7 @@ footer nav ul {
   z-index: 9999;
   left: 0;
   top: 0;
-  width: 100%;
+  width: 102%;
   height: 100%;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4);
@@ -479,6 +481,7 @@ footer nav ul {
 }
 .wrapper-images figure {
   position: relative;
+  margin-bottom: 15px;
 }
 .wrapper-images span {
   display: flex;
@@ -492,6 +495,7 @@ footer nav ul {
   width: 17px;
   height: 17px;
   font-size: 11px;
+  object-fit: cover;
   cursor: pointer;
 }
 /*********************** Modal Post *************************/
@@ -550,6 +554,7 @@ footer nav ul {
   padding-bottom: 20px;
   border-radius: 5px;
   width: 408px;
+  height: 150px;
   padding: 50px auto;
 }
 #ajouter-photo {
@@ -593,7 +598,7 @@ footer nav ul {
 }
 
 #validate-button.active {
-  background-color: green; /* Activé */
+  background-color: #1d6154; /* Activé */
   cursor: pointer;
 }
 

@@ -42,7 +42,9 @@ async function displayGalleryModal() {
   modalImages.innerHTML = "";
   const gallery = await getWorks();
 
-  gallery.forEach((objet) => {
+  const VisibleGallery = gallery.filter((objet) => objet.visible !== false);
+
+  VisibleGallery.forEach((objet) => {
     const figure = document.createElement("figure");
     const img = document.createElement("img");
     const span = document.createElement("span");
@@ -73,8 +75,8 @@ function getAuthToken() {
 function attachDeleteEvent() {
   document.querySelectorAll(".fa-trash-can").forEach((trash) => {
     trash.addEventListener("click", async () => {
-      await deleteImage(trash.id);
-      displayGalleryModal();
+      const projectId = trash.id; // Récupérer l'id du projet
+      await deleteImage(projectId);
     });
   });
 }
@@ -89,6 +91,7 @@ async function deleteImage(id) {
       },
     });
     if (!response.ok) throw new Error(`Erreur: ${response.status}`);
+    displayGalleryModal();
   } catch (error) {
     console.error("Erreur lors de la suppression:", error);
   }
@@ -111,6 +114,7 @@ arrowLeft.addEventListener("click", () => {
 
 fileInput.addEventListener("change", function () {
   const file = this.files[0];
+  const fileParagraphe = document.getElementById("jpgmo");
 
   if (!file) return alert("Aucun fichier sélectionné.");
   if (!file.type.startsWith("image/"))
@@ -195,11 +199,11 @@ document.addEventListener("DOMContentLoaded", function () {
       categoryInput.value.trim() !== "" &&
       fileInput.files.length > 0
     ) {
-      validateButton.style.backgroundColor = "#1d6154";
       validateButton.disabled = false; // Activer le bouton
+      validateButton.classList.add("active"); // Ajouter la classe CSS active
     } else {
-      validateButton.style.backgroundColor = "";
       validateButton.disabled = true; // Désactiver le bouton
+      validateButton.classList.remove("active"); // Enlever la classe CSS active
     }
   }
 

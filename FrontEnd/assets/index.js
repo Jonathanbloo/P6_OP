@@ -17,9 +17,7 @@ async function getCategorys() {
 /**  affichage du works **/
 
 async function worksView(filterId = 0) {
-  /* creation d'une function qui affiche mes works */
-  const arrayworks =
-    await getWorks(); /* variable qui appelle pour tableau works json */
+  const arrayworks = await getWorks();
   const gallery = document.querySelector(".gallery");
   gallery.innerHTML = "";
 
@@ -30,31 +28,15 @@ async function worksView(filterId = 0) {
       : arrayworks.filter((work) => work.categoryId === filterId);
 
   worksToDisplay.forEach((element) => {
-    /* foreach qui permet de rechercher mes elements dans mon tableau */
-    const galleryImage =
-      document.createElement("img"); /* variable qui cree un element image */
-    galleryImage.src =
-      element.imageUrl; /* permet d'aller chercher l'image depuis l'objet */
+    const galleryImage = document.createElement("img");
+    galleryImage.src = element.imageUrl;
     galleryImage.classList.add("gallery");
-    const galleryTitle =
-      document.createElement(
-        "figurecaption"
-      ); /* variable qui cree un element figurecaption */
-    galleryTitle.textContent =
-      element.title; /* permet d'aller chercher le titre depuis l'objet */
-    const galleryFigure =
-      document.createElement(
-        "figure"
-      ); /* variable qui cree un une balise figure */
-    galleryFigure.appendChild(
-      galleryImage
-    ); /* permet de mettre l'element image en enfant de figure */
-    galleryFigure.appendChild(
-      galleryTitle
-    ); /* permet de mettre l'element figurecaption en enfant de figure */
-    gallery.appendChild(
-      galleryFigure
-    ); /* permet de mettre l'element figure en enfant de la section gallery */
+    const galleryTitle = document.createElement("figurecaption");
+    galleryTitle.textContent = element.title;
+    const galleryFigure = document.createElement("figure");
+    galleryFigure.appendChild(galleryImage);
+    galleryFigure.appendChild(galleryTitle);
+    gallery.appendChild(galleryFigure);
   });
 }
 worksView();
@@ -66,14 +48,13 @@ async function displayFilters() {
   filters.unshift({ id: 0, name: "Tous" }); //une catégorie spéciale avec id: 0 et name: "Tous" Ce filtre permet d'afficher tous les travaux sans filtrage.
 
   filters.forEach((filter) => {
-    const button = document.createElement("button"); // Pour chaque catégorie dans filters, on crée un bouton HTML.
-    button.textContent = filter.name; // Le texte du bouton (button.textContent) est le nom de la catégorie (filter.name).
-    filterSection.appendChild(button); // Le bouton est ajouté à une section de filtres (filterSection).
-    button.classList.add("filtre__style"); // ajout d'une classe CSS (filtre__style) au bouton pour le styliser.
+    const button = document.createElement("button");
+    button.textContent = filter.name;
+    filterSection.appendChild(button);
+    button.classList.add("filtre__style");
 
     button.addEventListener("click", async () => {
-      //événement de clic est ajouté à chaque bouton.
-      await worksView(filter.id); //appelle worksView(filter.id), une fonction (non montrée ici) qui affiche les travaux correspondant à l'ID de la catégorie (filter.id)
+      await worksView(filter.id);
     });
   });
 }
@@ -148,9 +129,7 @@ if (loged === "true") {
 // Ajoutez des gestionnaires d'événements pour login et logout
 if (login) {
   login.addEventListener("click", () => {
-    // Simulez une connexion en tant qu'admin (pour les tests)
     window.sessionStorage.setItem("loged", "true");
-    // Rechargez la page pour appliquer les changements
     location.reload();
   });
 } else {
@@ -160,7 +139,6 @@ if (login) {
 if (logout) {
   logout.addEventListener("click", () => {
     window.sessionStorage.removeItem("loged");
-    // Rechargez la page vers login pour appliquer les changements
     window.location("login");
   });
 } else {
